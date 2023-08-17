@@ -1,4 +1,6 @@
 from django.contrib import admin
-from .models import Dum
-# Register your models here.
+from .models import Dum, Dim
+
+
 admin.site.register(Dum)
+admin.site.register(Dim)

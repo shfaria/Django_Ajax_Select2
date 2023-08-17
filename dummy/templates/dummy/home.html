@@ -9,7 +9,6 @@
     <style>
         select[name="dum"] {
             width: 100%;
-
         }
     </style>
 </head>
@@ -33,7 +32,20 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#id_dum').select2();        
+        $('#id_dum').select2({
+            ajax:{
+                url : "{% url 'home' %}",
+                dataType : 'json',
+                processResults : function (data){
+                    return {
+                        results : $.map(data, function (item){
+                            return {id :item.id, text:item.name};
+                        })
+                    }
+                }
+            },
+            minimumInputLength : 1
+        });        
     });
 </script>
 </body>
